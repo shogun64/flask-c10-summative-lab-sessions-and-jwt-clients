@@ -1,7 +1,12 @@
 from marshmallow import Schema, fields
 
 class UserSchema(Schema):
-    pass
+    id = fields.Int()
+    username = fields.Str()
+    journal_entries = fields.Nested(lambda: JournalEntrySchema(exclude=("user",)),many=True)
 
 class JournalEntrySchema(Schema):
-    pass
+    id = fields.Int()
+    date = fields.Date()
+    contents = fields.String()
+    user = fields.Nested(lambda: UserSchema(exclude=("journal_entries",)))
