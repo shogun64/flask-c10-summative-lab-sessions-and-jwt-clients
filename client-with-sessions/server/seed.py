@@ -31,7 +31,7 @@ with app.app_context():
     entries = []
     for i in range(25):
         contents = fake.paragraph(nb_sentences=8)
-        entry = JournalEntry(date=fake.date(), contents=contents)
+        entry = JournalEntry(date=fake.date_object(), contents=contents)
         entry.user = rc(users)
         entries.append(entry)
 
