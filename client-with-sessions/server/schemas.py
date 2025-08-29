@@ -2,7 +2,7 @@ from marshmallow import Schema, fields
 
 class UserSchema(Schema):
     id = fields.Int()
-    username = fields.Str()
+    username = fields.String()
     journal_entries = fields.Nested(lambda: JournalEntrySchema(exclude=("user",)),many=True)
 
 class JournalEntrySchema(Schema):

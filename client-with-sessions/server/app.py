@@ -10,9 +10,12 @@ class Signup(Resource):
         data = request.get_json()
         username = data.get("username")
         password = data.get("password")
+        password_confirmation = data.get("password_confirmation")
 
         if not username or not password:
             return {"errors": "Username and password required"}, 422
+        if password != password_confirmation:
+            return {'error': 'Passwords do not match.'}, 400
         
         user = User(username=username)
         user.password_hash = password
@@ -31,6 +34,7 @@ class Signup(Resource):
 
 class Login(Resource):
     def post(self):
+        print("test")
         data = request.get_json()
         username = data.get("username")
         password = data.get("password")

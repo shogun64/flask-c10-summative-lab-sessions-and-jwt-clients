@@ -18,6 +18,7 @@ function LoginForm({ onLogin }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);
+      console.log("result", r)
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
@@ -54,9 +55,6 @@ function LoginForm({ onLogin }) {
         </Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
       </FormField>
     </form>
   );
